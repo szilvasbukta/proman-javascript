@@ -48,10 +48,10 @@ ALTER TABLE ONLY card
 
 
 ALTER TABLE ONLY card
-    ADD CONSTRAINT fk_card_id FOREIGN KEY (board_id) REFERENCES board(id);
+    ADD CONSTRAINT fk_board_id FOREIGN KEY (board_id) REFERENCES board(id);
 
 ALTER TABLE ONLY card
-    ADD CONSTRAINT fk_card_id FOREIGN KEY (status_id) REFERENCES status(id);
+    ADD CONSTRAINT fk_status_id FOREIGN KEY (status_id) REFERENCES status(id);
 
 
 INSERT INTO board VALUES (1, 'Board 1');
