@@ -39,7 +39,6 @@ export let dom = {
                         <button class="board-add">Add Card</button>
                         <button class="board-toggle"><i class="fas fa-chevron-down"></i></button>
                     </div>
-                    
                 </section>
             `;
         }

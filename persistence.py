@@ -1,4 +1,5 @@
 import csv
+import database_common
 
 STATUSES_FILE = './data/statuses.csv'
 BOARDS_FILE = './data/boards.csv'
@@ -43,8 +44,18 @@ def get_statuses(force=False):
     return _get_data('statuses', STATUSES_FILE, force)
 
 
-def get_boards(force=False):
-    return _get_data('boards', BOARDS_FILE, force)
+# def get_boards(force=False):
+#     return _get_data('boards', BOARDS_FILE, force)
+
+@database_common.connection_handler
+def get_boards(cursor):
+    cursor.execute("""
+        SELECT * FROM board
+        ORDER BY id DESC 
+    """)
+    boards = cursor.fetchall()
+    print(boards)
+    return cursor.fetchall()
 
 
 def get_cards(force=False):
