@@ -41,6 +41,7 @@ export let dom = {
                     </div>
                 </section>
             `;
+            dom.loadCards(board['id'])
         }
 
         const outerHtml = `
@@ -49,13 +50,26 @@ export let dom = {
             </div>
         `;
         this._appendToElement(document.querySelector('#boards'), outerHtml);
+
     },
     loadCards: function (boardId) {
         // retrieves cards and makes showCards called
+        dataHandler.getCardsByBoardId(boardId, function(cards) {
+            dom.showCards(cards)
+        });
+
+
     },
     showCards: function (cards) {
         // shows the cards of a board
         // it adds necessary event listeners also
-    },
+
+        console.log(cards)
+
+        // let cardList = '';
+        //
+        // // for(let card of cards){
+        // //     cardList +=
+    }
     // here comes more features
 };
