@@ -78,8 +78,8 @@ export let dom = {
         }
         let outerHtml = `<div class="board-columns">${column}</div>`;
         this._appendToElement(boardHtml, outerHtml);
-
-
+        // let allColumns = document.getElementsByClassName("card-title");
+        // dragula(allColumns)
     }
 
     // here comes more features
