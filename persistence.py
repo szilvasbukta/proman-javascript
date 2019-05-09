@@ -57,10 +57,17 @@ def get_boards(cursor):
 
 
 @database_common.connection_handler
-def get_cards(cursor, board_id):
+def get_cards(cursor, board_id, status_id):
     cursor.execute("""
         SELECT * FROM card
-        WHERE board_id = %(board_id)s
-        ORDER BY order_id
-    """, {'board_id': board_id})
+        WHERE board_id = %(board_id)s AND status_id = %(status_id)s
+    """, {'board_id': board_id, 'status_id': status_id})
+    return cursor.fetchall()
+
+
+@database_common.connection_handler
+def get_statuses(cursor):
+    cursor.execute("""
+        SELECT * FROM status
+    """)
     return cursor.fetchall()

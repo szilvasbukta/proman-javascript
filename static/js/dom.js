@@ -52,9 +52,9 @@ export let dom = {
         this._appendToElement(document.querySelector('#boards'), outerHtml);
 
     },
-    loadCards: function (boardId) {
+    loadCards: function (boardId, statusId) {
         // retrieves cards and makes showCards called
-        dataHandler.getCardsByBoardId(boardId, function(cards) {
+        dataHandler.getCardsByBoardId(boardId, statusId, function(cards) {
             dom.showCards(cards)
         });
 

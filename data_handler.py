@@ -1,14 +1,8 @@
 import persistence
 
 
-def get_card_status(status_id):
-    """
-    Find the first status matching the given id
-    :param status_id:
-    :return: str
-    """
-    statuses = persistence.get_statuses()
-    return next((status['title'] for status in statuses if status['id'] == str(status_id)), 'Unknown')
+def get_statuses():
+    return persistence.get_statuses()
 
 
 def get_boards():
@@ -29,6 +23,11 @@ def get_boards():
 #             matching_cards.append(card)
 #     return matching_cards
 
+
 def get_cards_for_board(board_id):
-    return persistence.get_cards(board_id)
+    statuses = get_statuses()
+    cards = {}
+    for status in statuses:
+        cards[status['title']] = persistence.get_cards(board_id, status['id'])
+    return cards
 
