@@ -24,56 +24,62 @@ export let dom = {
         // retrieves boards and makes showBoards called
         dataHandler.getBoards(function(boards){
             dom.showBoards(boards);
-            for (let board of boards) {
-                dom.loadCards(board['id'])
-            }
         });
     },
     showBoards: function (boards) {
         // shows boards appending them to #boards div
         // it adds necessary event listeners also
 
-        let boardList = '';
         for(let board of boards){
-
-            boardList += `
+            let boardHtml = `
                 <section class="board">
                     <div class="board-header"><span class="board-title">${board['title']}</span>
                         <button class="board-add">Add Card</button>
                         <button class="board-toggle"><i class="fas fa-chevron-down"></i></button>
                     </div>
-                    <div class="board-columns">
-                        
-                    </div>
                 </section>
             `;
+            const boardInDocument = this._appendToElement(document.querySelector('.board-container'), boardHtml);
+            dom.loadCardsAsync(board['id'], boardInDocument)
         }
-        const outerHtml = `
-            <div class="board-container">
-                ${boardList}
-            </div>
-        `;
-        this._appendToElement(document.querySelector('#boards'), outerHtml);
-
     },
-    loadCards: function (boardId) {
-        // retrieves cards and makes showCards called
+
+
+    loadCardsAsync: function (boardId, boardHtml) {
+        // retrieves cards and makes loadCardsToBoard called
         dataHandler.getCardsByBoardId(boardId, function(cards) {
-            dom.showCards(cards)
+            dom.loadCardsToBoard(cards, boardHtml)
         });
-
-
     },
-    showCards: function (cards) {
+
+
+    loadCardsToBoard: function (statuses, boardHtml) {
         // shows the cards of a board
         // it adds necessary event listeners also
+        let columnTitles = ['New', '"In progress"', 'Testing', 'Done' ];
+        let cards;
+        let column = '';
+        let columnContent = '';
+        for (let status of Object.keys(statuses)) {
+            cards = '';
+            for (let card of statuses[status]) {
+                cards += `
+                        <div class="card">
+                            <div class="card-remove"><i class="fas fa-trash-alt"></i></div>
+                            <div class="card-title">${card['title']}</div>
+                        </div>
+                `;
+            }
+            columnContent += `<div class="board-column-title">${columnTitles[status]}</div>
+                       <div class="board-column-content">${cards}</div>
+            `;
+        column += `<div class="board-column">${columnContent}</div>`;
+        columnContent = '';
+        }
+        let outerHtml = `<div class="board-columns">${column}</div>`;
+        this._appendToElement(boardHtml, outerHtml);
 
-        console.log(cards);
-        console.log('sajt')
-        // let cardList = '';
-        //
-        // // for(let card of cards){
-        // //     cardList +=
+
     }
 
     // here comes more features

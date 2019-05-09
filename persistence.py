@@ -69,5 +69,6 @@ def get_cards(cursor, board_id, status_id):
 def get_statuses(cursor):
     cursor.execute("""
         SELECT * FROM status
+        ORDER BY id
     """)
     return cursor.fetchall()

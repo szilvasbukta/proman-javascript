@@ -28,6 +28,6 @@ def get_cards_for_board(board_id):
     statuses = get_statuses()
     cards = {}
     for status in statuses:
-        cards[status['title']] = persistence.get_cards(board_id, status['id'])
+        cards[status['id']] = persistence.get_cards(board_id, status['id'])
     return cards
 
