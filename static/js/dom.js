@@ -24,6 +24,9 @@ export let dom = {
         // retrieves boards and makes showBoards called
         dataHandler.getBoards(function(boards){
             dom.showBoards(boards);
+            for (let board of boards) {
+                dom.loadCards(board['id'])
+            }
         });
     },
     showBoards: function (boards) {
@@ -31,7 +34,6 @@ export let dom = {
         // it adds necessary event listeners also
 
         let boardList = '';
-
         for(let board of boards){
 
             boardList += `
@@ -40,11 +42,12 @@ export let dom = {
                         <button class="board-add">Add Card</button>
                         <button class="board-toggle"><i class="fas fa-chevron-down"></i></button>
                     </div>
+                    <div class="board-columns">
+                        
+                    </div>
                 </section>
             `;
-            dom.loadCards(board['id'])
         }
-
         const outerHtml = `
             <div class="board-container">
                 ${boardList}
@@ -65,12 +68,13 @@ export let dom = {
         // shows the cards of a board
         // it adds necessary event listeners also
 
-        console.log(cards)
-
+        console.log(cards);
+        console.log('sajt')
         // let cardList = '';
         //
         // // for(let card of cards){
         // //     cardList +=
     }
+
     // here comes more features
 };
