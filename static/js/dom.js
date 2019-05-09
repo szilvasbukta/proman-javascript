@@ -33,6 +33,7 @@ export let dom = {
         let boardList = '';
 
         for(let board of boards){
+
             boardList += `
                 <section class="board">
                     <div class="board-header"><span class="board-title">${board['title']}</span>
@@ -52,9 +53,9 @@ export let dom = {
         this._appendToElement(document.querySelector('#boards'), outerHtml);
 
     },
-    loadCards: function (boardId, statusId) {
+    loadCards: function (boardId) {
         // retrieves cards and makes showCards called
-        dataHandler.getCardsByBoardId(boardId, statusId, function(cards) {
+        dataHandler.getCardsByBoardId(boardId, function(cards) {
             dom.showCards(cards)
         });
 
