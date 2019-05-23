@@ -72,3 +72,11 @@ def get_statuses(cursor):
         ORDER BY id
     """)
     return cursor.fetchall()
+
+
+@database_common.connection_handler
+def add_new_board(cursor):
+    cursor.execute("""
+        INSERT INTO board (title)
+        VALUES ('test board')
+    """)
