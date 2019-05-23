@@ -16,9 +16,9 @@ function newBoard() {
     newBoardButton.addEventListener("click", function () {
         $.ajax({
             type: "POST",
-            data: {'planet_id': planetID, 'planet_name': planetName},
-            url: '/save_vote',
-            success: alert('done')
+            data: {'name': 'Board'},
+            url: '/ge',
+            success: dom.loadBoards()
         });
     })
 }

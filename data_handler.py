@@ -17,5 +17,5 @@ def get_cards_for_board(board_id):
     return cards
 
 
-def add_new_board():
-    persistence.add_new_board()
+def add_new_board(data):
+    persistence.add_new_board(data)

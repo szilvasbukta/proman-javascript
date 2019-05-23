@@ -75,8 +75,8 @@ def get_statuses(cursor):
 
 
 @database_common.connection_handler
-def add_new_board(cursor):
+def add_new_board(cursor, data):
     cursor.execute("""
         INSERT INTO board (title)
-        VALUES ('test board')
-    """)
+        VALUES (%(name)s)
+    """, {'name': data})
