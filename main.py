@@ -33,6 +33,11 @@ def get_cards_for_board(board_id: int):
     return data_handler.get_cards_for_board(board_id)
 
 
+@app.route('/add-new-board', methods=['POST'])
+def add_new_board():
+    data_handler.add_new_board()
+
+
 def main():
     app.run(debug=True)
 

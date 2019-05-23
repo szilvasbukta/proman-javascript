@@ -79,7 +79,7 @@ export let dom = {
         let outerHtml = `<div class="board-columns">${column}</div>`;
         this._appendToElement(boardHtml, outerHtml);
         let allColumns = document.querySelectorAll(".board-column");
-        dragula([allColumns])
+        dragula([allColumns[0],allColumns[1], allColumns[2], allColumns[3]])
     }
 
     // here comes more features

@@ -14,6 +14,11 @@ init();
 function newBoard() {
     let newBoardButton = document.querySelector(".board-add");
     newBoardButton.addEventListener("click", function () {
-        console.log("test")
+        $.ajax({
+            type: "POST",
+            data: {'planet_id': planetID, 'planet_name': planetName},
+            url: '/save_vote',
+            success: alert('done')
+        });
     })
 }
